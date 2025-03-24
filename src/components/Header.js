@@ -6,6 +6,11 @@ export default function Header() {
   const { setView } = useViewContext();
   const { user, logout } = useAuthContext()
 
+  const handleLogout = () => {
+    logout();
+    setView("list");
+  }
+
   return (
     <header className="flex p-1 bg-cyan-400 text-white sticky top-0 gap-[1rem] w-full justify-center items-center">
       <nav>
@@ -15,13 +20,13 @@ export default function Header() {
               <li className="cursor-pointer" onClick={() => setView("list")}>Inicio</li>
 
               <li className="cursor-pointer" onClick={() => setView("inventory")}>Ver inventario</li>
-              {user.user.isAdmin ? (
+              {user.user.isAdmin && (
                 <>
                   <li className="cursor-pointer" onClick={() => setView("createBook")}>Crear Libro</li>
                   <li className="cursor-pointer" onClick={() => setView("userList")}>Usuarios</li>
                 </>
-              ) : (<></>)}
-              <li className="cursor-pointer" onClick={logout}>Logout</li>
+              )}
+              <li className="cursor-pointer" onClick={() => handleLogout()}>Logout</li>
 
             </>
           ) : (
