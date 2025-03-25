@@ -20,12 +20,12 @@ export default function Header() {
               <li className="cursor-pointer" onClick={() => setView("list")}>Inicio</li>
 
               <li className="cursor-pointer" onClick={() => setView("inventory")}>Ver inventario</li>
-              {user.user.isAdmin && (
+              {user.user.isAdmin ?
                 <>
                   <li className="cursor-pointer" onClick={() => setView("createBook")}>Crear Libro</li>
                   <li className="cursor-pointer" onClick={() => setView("userList")}>Usuarios</li>
                 </>
-              )}
+              : <></> }
               <li className="cursor-pointer" onClick={() => handleLogout()}>Logout</li>
 
             </>
